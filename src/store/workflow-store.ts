@@ -269,4 +269,5 @@ function getEdgeColor(dataType: string): string {
 }
 
 // ─── Undo/Redo exports ────────────────────────────────────────────
-export const useTemporalStore = (useWorkflowStore as any).temporal as ReturnType<typeof temporal>;
+export const useTemporalStore =
+  (useWorkflowStore as unknown as { temporal: any }).temporal;

@@ -34,7 +34,7 @@ export default async function WorkflowPage() {
       initialNodes={(workflow.nodes as any[]) ?? []}
       initialEdges={(workflow.edges as any[]) ?? []}
       initialViewport={(workflow.viewport as any) ?? { x: 0, y: 0, zoom: 1 }}
-      initialRuns={runs}
+      initialRuns={runs as any}
     />
   );
 }

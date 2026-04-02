@@ -145,7 +145,11 @@ function Canvas({ workflowId, initialNodes, initialEdges, initialViewport, initi
       const run = data.run;
 
       // Update node statuses from results
-      run.nodeRuns.forEach((nr: any) => {
+      run.nodeRuns.forEach((nr: {
+  nodeId: string;
+  status: string;
+  output?: string;
+}) => {
         store.setNodeStatus(
           nr.nodeId,
           nr.status === "SUCCESS" ? "done" : "error",
@@ -163,7 +167,7 @@ function Canvas({ workflowId, initialNodes, initialEdges, initialViewport, initi
           : `⚠ Finished with errors`,
         variant: allOk ? "default" : "destructive",
       });
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ description: err.message ?? "Execution error", variant: "destructive" });
     } finally {
       useWorkflowStore.setState({ isRunning: false });

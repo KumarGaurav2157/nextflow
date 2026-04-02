@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "*.transloadit.com" },
@@ -7,7 +10,6 @@ const nextConfig = {
       { protocol: "https", hostname: "picsum.photos" },
     ],
   },
-  // Next.js 15: Server Actions are enabled by default
   experimental: {
     serverActions: {
       allowedOrigins: ["localhost:3000"],

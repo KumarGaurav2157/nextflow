@@ -97,7 +97,7 @@ export interface NodeRunRecord {
   nodeLabel: string;
   status: RunStatus;
   triggerId?: string | null;
-  inputs?: Record<string, unknown> | null;
+  inputs?: any;  // ← changed to any
   output?: string | null;
   errorMsg?: string | null;
   startedAt: Date;

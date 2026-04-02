@@ -172,13 +172,22 @@ export const useWorkflowStore = create<WorkflowState>()(
         return id;
       },
 
-      updateNodeData: (id, data) => {
-        set((s) => ({
-          nodes: s.nodes.map((n) =>
-            n.id === id ? { ...n, data: { ...n.data, ...data } } : n
-          ),
-        }));
-      },
+     updateNodeData: (id, data) => {
+  set((s) => ({
+    nodes: s.nodes.map((n) => {
+      if (n.id !== id) return n;
+
+      return {
+        ...n,
+        data: {
+          ...n.data,
+          ...data,
+          type: n.data.type, // 🔥 CRITICAL FIX
+        },
+      };
+    }),
+  }));
+},
 
       setNodeStatus: (id, status, output) => {
         set((s) => ({
